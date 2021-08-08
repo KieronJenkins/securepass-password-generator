@@ -1,8 +1,8 @@
 import random
+import string
 
 password_choice = ["YES", "Yes", "yes", "Y", "y"] #If user types any of these for generate_password
-
-password_characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!£$%&*@#^[]{}~()<>=+:;/" #List of characters used in password
+password_characters = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation #List of characters used in password
 generate_password = input("Do you want a randomly generated password? Please answer Yes or No: \n")
 
 
