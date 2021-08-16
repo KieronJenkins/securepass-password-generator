@@ -19,7 +19,7 @@ There is also a copy/paste icon next to the password which the user can use to c
 ![Readme banner image](./static/githubapp.png)
 
 ## Why a password generator
-With our lives being ever more digital its important to make sure our personal information is kept secure, according to a Google survey over 65% of people reuse passwords across multiple, if not all sites. If this wasnt bad enough a Verizon report showed that over 80% of hacking related breaches and down to users have compromised passwords.
+With our lives being ever more digital its important to make sure our personal information is kept secure, according to a Google survey over 65% of people reuse passwords across multiple, if not all sites. If this wasnt bad enough a Verizon report showed that over 80% of hacking related breaches are down to compromised passwords.
 
 This is where the password generator comes in. Easy to use. Hard to crack.
 
