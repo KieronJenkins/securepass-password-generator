@@ -24,4 +24,4 @@ With our lives being ever more digital its important to make sure our personal i
 This is where the password generator comes in. Easy to use. Hard to crack.
 
 ## References
-- Streaming Statistics by security boulevard: [securityboulevard.com](https://securityboulevard.com/2020/04/8-scary-statistics-about-the-password-reuse-problem/)
+- Statistics by security boulevard: [securityboulevard.com](https://securityboulevard.com/2020/04/8-scary-statistics-about-the-password-reuse-problem/)
