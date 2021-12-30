@@ -1,53 +1,49 @@
 from tkinter import *
-from PIL import ImageTk, Image
-import random
-import string
+from tkinter import ttk
+from random import randint
 
-password_characters = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation
-
-
-def random_choice():
-    random_length = int(25)  # Randoms between 8 and 128 characters
-    random_password = ""  # Password shell
-    random_password = "".join(random.sample(password_characters, random_length))
-    return random_password
-
-
-main_pass = random_choice()
-
-
-def copy_password():
-    root.clipboard_clear()
-    root.clipboard_append(main_pass)
-    root.update()
-
+# from random import randrange
 
 root = Tk()
-root.geometry("420x210")
-root.configure(bg="#2e2e3b")
-root.resizable(False, False)
+root.title("SecurePass Password Generator")  # Title of window
+root.iconbitmap(r"C:\Users\kiero\Desktop\SecurePass-PasswordGen\static\icon.ico")  # Icon image
+root.geometry("390x170")  # Window size
+root.configure(bg="#2e2e3b", pady=0)  # Window background colour and padding
+root.resizable(False, False)  # Stops window being resized
+root.attributes('-topmost', 1)  # Window always appears ontop of other windows
 
-root.title("SecurePass Password Generator")
-root.iconbitmap(r"C:\Users\kiero\Desktop\SecurePass-PasswordGen\static\icon.ico")
 
-header_img = ImageTk.PhotoImage(Image.open(r"C:\Users\kiero\Desktop\SecurePass-PasswordGen\static\securepass-logo.png"))
-header_img_label = Label(image=header_img, bg="#2e2e3b", width=400)
-header_img_label.grid(columnspan=3, column=1, row=0, pady=15, padx=5)
+def slider_changed(*args):
+    slider_value = int(slider.get())  # Get value of slider (default 8)
+    # print(slider_value)
+    pass_ran_length = slider_value  # Sets length to slider value
+    password_text.delete(0, END)  # Deletes all text
+    pw_length = int(pass_ran_length)
+    my_password = ""  # password shell
 
-gen_password_img = PhotoImage(file=r"C:\Users\kiero\Desktop\SecurePass-PasswordGen\static\genpass-btn.png")
-gen_exit_img = PhotoImage(file=r"C:\Users\kiero\Desktop\SecurePass-PasswordGen\static\exitpass-btn.png")
-copy_icon = PhotoImage(file=r"C:\Users\kiero\Desktop\SecurePass-PasswordGen\static\copyicon.png")
+    for x in range(pw_length):
+        my_password += chr(randint(33, 126))  # Randoms the characters and numbers being used
 
-password_amount = Entry(root, width=33, bg="#3d4255", fg="#f9f9f9", borderwidth=0, font="Montserrat")
-password_amount.insert(10, main_pass)
-password_amount.grid(columnspan=2, column=0, row=2, pady=10, padx=10)
+    password_text.insert(0, my_password)  # Show generated password
 
-copy_icon_btn = Button(root, image=copy_icon, width=20, height=20, borderwidth=0, bg="#2e2e3b", cursor="hand2",
-                       activebackground="#2e2e3b", command=copy_password())
-copy_icon_btn.grid(columnspan=3, column=2, row=2, pady=8)
 
-generate_password_btn = Button(root, image=gen_password_img, width=175, height=36, borderwidth=0, bg="#2e2e3b",
-                               cursor="hand2", activebackground="#2e2e3b", command=random_choice())
-generate_password_btn.grid(columnspan=2, column=1, row=3, pady=4, padx=2)
+password_text = Entry(root, text="", font=("Montserrat", 20), bd=0, bg="#272733",
+                      fg="#f7f7f7")  # Password box and font styling
+password_text.pack(pady=10)  # Password box padding
+
+slider = ttk.Scale(root, from_=8, to=100, orient='horizontal', command=slider_changed, length=360)  # Slider styling
+slider.pack()
+slider.set(8)  # Sets slider to default of 8
+
+slider_label = Label(root, text="Password Length: 8 - 100", font=("Montserrat", 14), bg="#2e2e3b", bd=0, fg="#f7f7f7")
+slider_label.pack()  # Label styling
+
+frame = Frame(root)
+frame.pack(pady=5)
+
+generate_btn = Button(frame, text="Generate New Password", command=slider_changed, bd=0, cursor="hand2", width=51,
+                      height=2, bg="#272733", activebackground="#2e2e3b", fg="#f7f7f7")  # Button styling
+generate_btn.pack()
 
 root.mainloop()
+
